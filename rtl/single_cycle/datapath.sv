@@ -1,0 +1,151 @@
+module datapath (
+    input  logic        clk,
+    input  logic        reset,
+
+    // control signals
+    input  logic        reg_write,
+    input  logic        alu_src,
+    input  logic        mem_write,
+    input  logic [1:0]  result_src,
+    input  logic [1:0]  imm_src,
+    input  logic [2:0]  alu_ctrl,
+    input  logic        pc_src,
+
+    // status outputs to controller
+    output logic        zero,
+    output logic [31:0] instr
+);
+
+logic [31:0] pc;
+logic [31:0] pc_next;
+logic [31:0] pc_plus4;
+logic [31:0] pc_target;
+
+logic [31:0] rd1;
+logic [31:0] rd2;
+
+logic [31:0] imm_ext;
+
+logic [31:0] alu_src_b;
+logic [31:0] alu_result;
+
+logic [31:0] read_data;
+
+logic [31:0] write_data;
+
+////////////////////////////////////////////////////////////
+// PC REGISTER
+////////////////////////////////////////////////////////////
+
+flopr pc_reg_inst (
+    .clk(clk),
+    .reset(reset),
+    .d(pc_next),
+    .q(pc)
+);
+
+////////////////////////////////////////////////////////////
+// INSTRUCTION MEMORY
+////////////////////////////////////////////////////////////
+
+instruction_memory imem (
+    .addr(pc),
+    .instr(instr)
+);
+
+////////////////////////////////////////////////////////////
+// PC + 4
+////////////////////////////////////////////////////////////
+
+assign pc_plus4 = pc + 32'd4;
+
+////////////////////////////////////////////////////////////
+// REGISTER FILE
+////////////////////////////////////////////////////////////
+
+register_file rf (
+    .clk(clk),
+    .we(reg_write),
+    .rs1(instr[19:15]),
+    .rs2(instr[24:20]),
+    .rd(instr[11:7]),
+    .wd(write_data),
+    .rd1(rd1),
+    .rd2(rd2)
+);
+
+////////////////////////////////////////////////////////////
+// IMMEDIATE GENERATOR
+////////////////////////////////////////////////////////////
+
+imm_gen immgen (
+    .instr(instr),
+    .imm_src(imm_src),
+    .imm(imm_ext)
+);
+
+////////////////////////////////////////////////////////////
+// ALU INPUT MUX
+////////////////////////////////////////////////////////////
+
+mux2 #(32) alu_src_mux (
+    .a(rd2),
+    .b(imm_ext),
+    .sel(alu_src),
+    .y(alu_src_b)
+);
+
+////////////////////////////////////////////////////////////
+// ALU
+////////////////////////////////////////////////////////////
+
+alu alu_inst (
+    .a(rd1),
+    .b(alu_src_b),
+    .alu_ctrl(alu_ctrl),
+    .result(alu_result),
+    .zero(zero)
+);
+
+////////////////////////////////////////////////////////////
+// DATA MEMORY
+////////////////////////////////////////////////////////////
+
+data_memory dmem (
+    .clk(clk),
+    .we(mem_write),
+    .a(alu_result),
+    .wd(rd2),
+    .rd(read_data)
+);
+
+////////////////////////////////////////////////////////////
+// WRITEBACK MUX
+////////////////////////////////////////////////////////////
+
+mux3 #(32) writeback_mux (
+    .a(alu_result),
+    .b(read_data),
+    .c(pc_plus4),
+    .sel(result_src),
+    .y(write_data)
+);
+
+////////////////////////////////////////////////////////////
+// PC TARGET (branch / jump)
+////////////////////////////////////////////////////////////
+
+assign pc_target = pc + imm_ext;
+
+////////////////////////////////////////////////////////////
+// PC NEXT MUX
+////////////////////////////////////////////////////////////
+
+mux2 #(32) pc_mux (
+    .a(pc_plus4),
+    .b(pc_target),
+    .sel(pc_src),
+    .y(pc_next)
+);
+
+endmodule

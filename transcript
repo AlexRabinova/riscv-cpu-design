@@ -1,0 +1,97 @@
+# do simulate.do 
+# Modifying modelsim.ini
+# Compiling COMMON modules... 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module adder
+# -- Compiling module flop_en
+# -- Compiling module flopr
+# -- Compiling module mux2
+# -- Compiling module mux3
+# 
+# Top level modules:
+# 	adder
+# 	flop_en
+# 	flopr
+# 	mux2
+# 	mux3
+# Compiling CONTROL modules... 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module alu_controller
+# -- Compiling module main_controller
+# 
+# Top level modules:
+# 	alu_controller
+# 	main_controller
+# Compiling DATAPATH modules... 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module alu
+# -- Compiling module imm_gen
+# -- Compiling module register_file
+# 
+# Top level modules:
+# 	alu
+# 	imm_gen
+# 	register_file
+# Compiling MEMORY modules... 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module data_memory
+# -- Compiling module instruction_memory
+# 
+# Top level modules:
+# 	data_memory
+# 	instruction_memory
+# Compiling TOP modules... 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module controller
+# -- Compiling module cpu
+# -- Compiling module datapath
+# 
+# Top level modules:
+# 	cpu
+# Compiling Testbench... 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module controller_tb
+# -- Compiling module cpu_tb
+# -- Compiling module datapath_tb
+# 
+# Top level modules:
+# 	controller_tb
+# 	cpu_tb
+# 	datapath_tb
+# Starting simulation... 
+# vsim -voptargs=+acc -c cpu_tb 
+# Loading sv_std.std
+# Loading work.cpu_tb
+# Loading work.cpu
+# Loading work.controller
+# Loading work.main_controller
+# Loading work.alu_controller
+# Loading work.datapath
+# Loading work.flopr
+# Loading work.instruction_memory
+# Loading work.register_file
+# Loading work.imm_gen
+# Loading work.mux2
+# Loading work.alu
+# Loading work.data_memory
+# Loading work.mux3
+# t=5 PC=00000000 instr=00500093
+# WRITE: x1 <= 5
+# READ: xx
+# t=15 PC=00000000 instr=00500093
+# WRITE: x1 <= 5
+# READ: xx
+# t=25 PC=00000000 instr=00500093
+# WRITE: x1 <= 5
+# READ: xx
+# t=35 PC=00000004 instr=00108113
+# WRITE: x2 <= 6
+# READ: xx
+# t=45 PC=00000008 instr=00000063
+# READ: xx
+# t=55 PC=00000008 instr=00000063
+# READ: xx
+# t=65 PC=00000008 instr=00000063
+# READ: xx
+# ** Note: $finish    : tb/cpu_tb.sv(69)
+#    Time: 70 ns  Iteration: 0  Instance: /cpu_tb

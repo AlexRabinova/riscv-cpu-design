@@ -1,0 +1,72 @@
+`timescale 1ns/1ns
+
+module cpu_tb;
+
+logic clk;
+logic reset;
+
+/////////////////////////////////////////////////
+// DUT
+/////////////////////////////////////////////////
+
+cpu dut (
+    .clk(clk),
+    .reset(reset)
+);
+
+/////////////////////////////////////////////////
+// CLOCK
+/////////////////////////////////////////////////
+
+initial clk = 0;
+always #5 clk = ~clk;
+
+/////////////////////////////////////////////////
+// RESET
+/////////////////////////////////////////////////
+
+initial begin
+    reset = 1;
+    #20;
+    reset = 0;
+end
+
+/////////////////////////////////////////////////
+// MONITOR EXECUTION
+/////////////////////////////////////////////////
+
+always @(posedge clk) begin
+
+        $display("t=%0t PC=%h instr=%h",
+        $time,
+        dut.dp.pc,
+        dut.instr);
+end
+
+/////////////////////////////////////////////////
+// CHECK REGISTER WRITES
+/////////////////////////////////////////////////
+
+always @(posedge clk) begin
+    if (dut.reg_write) begin
+        $display("WRITE: x%0d <= %0d",
+            dut.instr[11:7],        // destination register
+            dut.dp.write_data       // value written
+        );
+    end
+    $display("READ: x%0d",dut.dp.read_data);
+    if (dut.dp.mem_write) begin
+        $display("WRITETODATAMEM: x%0d",dut.dp.rd2);
+    end
+end
+
+/////////////////////////////////////////////////
+// STOP SIMULATION
+/////////////////////////////////////////////////
+
+initial begin
+    #70;
+    $finish;
+end
+
+endmodule
