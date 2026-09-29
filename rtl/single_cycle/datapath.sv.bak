@@ -33,8 +33,6 @@ logic [31:0] read_data;
 
 logic [31:0] write_data;
 
- parameter ADDR_WIDTH = 8;
-
 ////////////////////////////////////////////////////////////
 // PC REGISTER
 ////////////////////////////////////////////////////////////
@@ -50,15 +48,9 @@ flopr pc_reg_inst (
 // INSTRUCTION MEMORY
 ////////////////////////////////////////////////////////////
 
-//instruction_memory imem (
-//    .addr(pc),
-//    .instr(instr)
-//);
-// New Quartus MegaWizard IP instantiation
-instruction_rom imem (
-    .address(pc[9:2]), // Keep your word-aligned address slicing if needed
-    .clock(clk),               // MegaWizard ROM blocks are synchronous and require a clock!
-    .q(instr)                  // Note: MegaWizard typically names the output port 'q' instead of 'instr'
+instruction_memory imem (
+    .addr(pc),
+    .instr(instr)
 );
 
 ////////////////////////////////////////////////////////////
@@ -118,30 +110,14 @@ alu alu_inst (
 ////////////////////////////////////////////////////////////
 // DATA MEMORY
 ////////////////////////////////////////////////////////////
-//
-//data_memory dmem (
-//    .clk(clk),
-//    .we(mem_write),
-//    .a(alu_result),
-//    .wd(rd2),
-//    .rd(read_data)
-//);
 
-
-// Data Memory (MegaWizard RAM: 2-PORT with Shared Clock)
 data_memory dmem (
-    .clock       ( clk ),                        // Shared clock for both ports
-    
-    // Write Port Side
-    .wraddress   ( alu_result[ADDR_WIDTH+1:2] ), // Address for writing (from ALU)
-    .data        ( rd2 ),                 // Data to write (from Register File rs2)
-    .wren        ( mem_write ),                  // Write Enable signal (active high during 'sw')
-    
-    // Read Port Side
-    .rdaddress  ( alu_result[ADDR_WIDTH+1:2] ), // Address for reading (from ALU)
-    .q           ( read_data )                   // Data read out (to writeback mux for 'lw')
+    .clk(clk),
+    .we(mem_write),
+    .a(alu_result),
+    .wd(rd2),
+    .rd(read_data)
 );
-
 
 ////////////////////////////////////////////////////////////
 // WRITEBACK MUX

@@ -1,7 +1,6 @@
 module cpu(
     input logic clk,
-    input logic reset,
-	 output logic [31:0] instr_debug
+    input logic reset
 );
 
 logic [31:0] instr;
@@ -52,7 +51,5 @@ datapath dp (
     .zero(zero),
     .instr(instr)
 );
-
-assign instr_debug = instr;
 
 endmodule
