@@ -57,7 +57,7 @@ instruction_memory imem (
 // PC + 4
 ////////////////////////////////////////////////////////////
 
-assign pc_plus4 = pc + 32'd4;
+assign pc_plus4 = pc + 32'd4; // PC NEXT
 
 ////////////////////////////////////////////////////////////
 // REGISTER FILE
@@ -88,7 +88,7 @@ imm_gen immgen (
 // ALU INPUT MUX
 ////////////////////////////////////////////////////////////
 
-mux2 #(32) alu_src_mux (
+mux2 #(32) alu_src_mux ( // muxing between rs2 and extended_immdiate
     .a(rd2),
     .b(imm_ext),
     .sel(alu_src),
@@ -123,7 +123,7 @@ data_memory dmem (
 // WRITEBACK MUX
 ////////////////////////////////////////////////////////////
 
-mux3 #(32) writeback_mux (
+mux3 #(32) writeback_mux ( // result multiplexer
     .a(alu_result),
     .b(read_data),
     .c(pc_plus4),
@@ -135,7 +135,7 @@ mux3 #(32) writeback_mux (
 // PC TARGET (branch / jump)
 ////////////////////////////////////////////////////////////
 
-assign pc_target = pc + imm_ext;
+assign pc_target = pc + imm_ext; // for jump instruction
 
 ////////////////////////////////////////////////////////////
 // PC NEXT MUX

@@ -5,9 +5,9 @@ module register_file #(
 )(
     input  logic                     clk,
     input  logic                     we,          // write enable
-    input  logic [ADDR_WIDTH-1:0]    rs1,
-    input  logic [ADDR_WIDTH-1:0]    rs2,
-    input  logic [ADDR_WIDTH-1:0]    rd,
+    input  logic [ADDR_WIDTH-1:0]    rs1,         // source 1 addr
+    input  logic [ADDR_WIDTH-1:0]    rs2,         // source 2 addr
+    input  logic [ADDR_WIDTH-1:0]    rd,          // destination addr
     input  logic [DATA_WIDTH-1:0]    wd,          // write data
     output logic [DATA_WIDTH-1:0]    rd1,         // read data 1
     output logic [DATA_WIDTH-1:0]    rd2          // read data 2

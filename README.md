@@ -1,2 +1,1 @@
-# riscv-cpu-design
 RISC-V RV32I CPU implementations in SystemVerilog, single-cycle architecture with simulation, testbenches.

@@ -10,29 +10,44 @@ logic rtype_sub;
 
 assign rtype_sub = funct7b5 & opb5;
 
-always_comb
-    case(alu_op)
+always_comb begin
+    case (alu_op)
 
-        2'b00: alu_ctrl = 3'b000; // add
-        2'b01: alu_ctrl = 3'b001; // sub (for branch)
+        2'b00: alu_ctrl = 3'b000; // add (lw, sw)
 
-        default: case(funct3)
+        2'b01: alu_ctrl = 3'b001; // sub (beq)
 
-            3'b000: begin
-                if (rtype_sub)
-                    alu_ctrl = 3'b001; // sub
-                else
-                    alu_ctrl = 3'b000; // add
-            end
+        2'b10: begin
+            case (funct3)
 
-            3'b010: alu_ctrl = 3'b100; // slt
-            3'b110: alu_ctrl = 3'b011; // or
-            3'b111: alu_ctrl = 3'b010; // and
+                // ADD / SUB
+                3'b000: begin
+                    if (rtype_sub)
+                        alu_ctrl = 3'b001; // sub
+                    else
+                        alu_ctrl = 3'b000; // add
+                end
 
-            default: alu_ctrl = 3'bxxx;
+                // SLT
+                3'b010: alu_ctrl = 3'b101;
 
-        endcase
+                // OR
+                3'b110: alu_ctrl = 3'b011;
+
+                // AND
+                3'b111: alu_ctrl = 3'b010;
+
+                // XOR
+                3'b100: alu_ctrl = 3'b100;
+
+                default: alu_ctrl = 3'bxxx;
+
+            endcase
+        end
+
+        default: alu_ctrl = 3'bxxx;
 
     endcase
+end
 
 endmodule

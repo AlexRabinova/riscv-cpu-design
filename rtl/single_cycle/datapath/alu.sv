@@ -15,7 +15,8 @@ always_comb begin
         3'b001: result = a - b;                // SUB
         3'b010: result = a & b;                // AND
         3'b011: result = a | b;                // OR
-        3'b100: result = ($signed(a) < $signed(b)) ? 32'd1 : '0; // SLT
+        3'b101: result = ($signed(a) < $signed(b)) ? 32'd1 : '0; // SLT
+        3'b100: result = a ^ b; // XOR
         default: result = 'x;
 
     endcase

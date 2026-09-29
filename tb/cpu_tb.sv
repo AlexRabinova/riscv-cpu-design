@@ -32,32 +32,125 @@ initial begin
 end
 
 /////////////////////////////////////////////////
-// MONITOR EXECUTION
+// CYCLE COUNTER
+/////////////////////////////////////////////////
+
+int cycle = 0;
+
+/////////////////////////////////////////////////
+// FULL TRACE (MAIN DEBUG BLOCK)
 /////////////////////////////////////////////////
 
 always @(posedge clk) begin
+    cycle++;
 
-        $display("t=%0t PC=%h instr=%h",
-        $time,
+    $display("\n=================================================");
+    $display("Cycle=%0d | Time=%0t | RESET=%0b", cycle, $time, reset);
+
+    /////////////////////////
+    // PC + INSTRUCTION
+    /////////////////////////
+    $display("PC=%h | PC_next=%h",
         dut.dp.pc,
-        dut.instr);
+        dut.dp.pc_next
+    );
+
+    $display("INSTR=%h", dut.instr);
+
+    /////////////////////////
+    // REGISTER FILE
+    /////////////////////////
+    $display("REGFILE:");
+    $display("  A1=%0d RD1=%h",
+        dut.instr[19:15],
+        dut.dp.rd1
+    );
+
+    $display("  A2=%0d RD2=%h",
+        dut.instr[24:20],
+        dut.dp.rd2
+    );
+
+    $display("  A3=%0d WD3=%h",
+        dut.instr[11:7],
+        dut.dp.write_data
+    );
+
+    /////////////////////////
+    // ALU
+    /////////////////////////
+    $display("ALU:");
+    $display("  SrcA=%h | SrcB=%h",
+        dut.dp.rd1,
+        dut.dp.alu_src_b
+    );
+
+    $display("  ALUControl=%b | ALUResult=%h",
+        dut.ctrl.alu_ctrl,
+        dut.dp.alu_result
+    );
+
+    /////////////////////////
+    // DATA MEMORY
+    /////////////////////////
+    $display("DATA MEMORY:");
+    $display("  Addr=%h",
+        dut.dp.alu_result
+    );
+
+    $display("  WriteData=%h | ReadData=%h",
+        dut.dp.rd2,
+        dut.dp.read_data
+    );
+
+    /////////////////////////
+    // CONTROL SIGNALS (FULL)
+    /////////////////////////
+    $display("CONTROL:");
+
+    $display("  result_src=%b | imm_src=%b",
+        dut.ctrl.result_src,
+        dut.ctrl.imm_src
+    );
+
+    $display("  alu_src=%b | alu_ctrl=%b",
+        dut.ctrl.alu_src,
+        dut.ctrl.alu_ctrl
+    );
+
+    $display("  reg_write=%b | mem_write=%b",
+        dut.ctrl.reg_write,
+        dut.ctrl.mem_write
+    );
+
+    $display("  pc_src=%b",
+        dut.ctrl.pc_src
+    );
+
 end
 
 /////////////////////////////////////////////////
-// CHECK REGISTER WRITES
+// WRITE EVENTS 
 /////////////////////////////////////////////////
 
 always @(posedge clk) begin
-    if (dut.reg_write) begin
-        $display("WRITE: x%0d <= %0d",
-            dut.instr[11:7],        // destination register
-            dut.dp.write_data       // value written
+
+    // Register write
+    if (dut.ctrl.reg_write) begin
+        $display(">>> REG WRITE: x%0d <= %h",
+            dut.instr[11:7],
+            dut.dp.write_data
         );
     end
-    $display("READ: x%0d",dut.dp.read_data);
-    if (dut.dp.mem_write) begin
-        $display("WRITETODATAMEM: x%0d",dut.dp.rd2);
+
+    // Memory write
+    if (dut.ctrl.mem_write) begin
+        $display(">>> MEM WRITE: Addr=%h Data=%h",
+            dut.dp.alu_result,
+            dut.dp.rd2
+        );
     end
+
 end
 
 /////////////////////////////////////////////////
@@ -65,7 +158,7 @@ end
 /////////////////////////////////////////////////
 
 initial begin
-    #70;
+    #300;
     $finish;
 end
 

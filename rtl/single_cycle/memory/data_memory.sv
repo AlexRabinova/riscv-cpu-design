@@ -16,9 +16,8 @@ logic [DATA_WIDTH-1:0] RAM [0:DEPTH-1];
 assign rd = RAM[a[ADDR_WIDTH+1:2]];
 
 always_ff @(posedge clk)
-begin
     if (we)
         RAM[a[ADDR_WIDTH+1:2]] <= wd;
-end
+
 
 endmodule
