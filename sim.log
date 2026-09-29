@@ -1,0 +1,697 @@
+# do simulate.do 
+# Modifying modelsim.ini
+# Compiling COMMON modules... 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module flop_en
+# -- Compiling module flopr
+# -- Compiling module mux2
+# -- Compiling module mux3
+# 
+# Top level modules:
+# 	flop_en
+# 	flopr
+# 	mux2
+# 	mux3
+# Compiling CONTROL modules... 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module alu_controller
+# -- Compiling module main_controller
+# 
+# Top level modules:
+# 	alu_controller
+# 	main_controller
+# Compiling DATAPATH modules... 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module alu
+# -- Compiling module imm_gen
+# -- Compiling module register_file
+# 
+# Top level modules:
+# 	alu
+# 	imm_gen
+# 	register_file
+# Compiling MEMORY modules... 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module data_memory
+# -- Compiling module instruction_memory
+# 
+# Top level modules:
+# 	data_memory
+# 	instruction_memory
+# Compiling TOP modules... 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module controller
+# -- Compiling module cpu
+# -- Compiling module datapath
+# 
+# Top level modules:
+# 	cpu
+# Compiling Testbench... 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module controller_tb
+# -- Compiling module cpu_tb
+# -- Compiling module datapath_tb
+# 
+# Top level modules:
+# 	controller_tb
+# 	cpu_tb
+# 	datapath_tb
+# Starting simulation... 
+# vsim -voptargs=+acc -c cpu_tb 
+# Loading sv_std.std
+# Loading work.cpu_tb
+# Loading work.cpu
+# Loading work.controller
+# Loading work.main_controller
+# Loading work.alu_controller
+# Loading work.datapath
+# Loading work.flopr
+# Loading work.instruction_memory
+# Loading work.register_file
+# Loading work.imm_gen
+# Loading work.mux2
+# Loading work.alu
+# Loading work.data_memory
+# Loading work.mux3
+# 
+# =================================================
+# Cycle=1 | Time=5 | RESET=1
+# PC=00000000 | PC_next=00000004
+# INSTR=00500093
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=5 RD2=xxxxxxxx
+#   A3=1 WD3=00000005
+# ALU:
+#   SrcA=00000000 | SrcB=00000005
+#   ALUControl=000 | ALUResult=00000005
+# DATA MEMORY:
+#   Addr=00000005
+#   WriteData=xxxxxxxx | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=1 | alu_ctrl=000
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x1 <= 00000005
+# 
+# =================================================
+# Cycle=2 | Time=15 | RESET=1
+# PC=00000000 | PC_next=00000004
+# INSTR=00500093
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=5 RD2=xxxxxxxx
+#   A3=1 WD3=00000005
+# ALU:
+#   SrcA=00000000 | SrcB=00000005
+#   ALUControl=000 | ALUResult=00000005
+# DATA MEMORY:
+#   Addr=00000005
+#   WriteData=xxxxxxxx | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=1 | alu_ctrl=000
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x1 <= 00000005
+# 
+# =================================================
+# Cycle=3 | Time=25 | RESET=0
+# PC=00000000 | PC_next=00000004
+# INSTR=00500093
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=5 RD2=xxxxxxxx
+#   A3=1 WD3=00000005
+# ALU:
+#   SrcA=00000000 | SrcB=00000005
+#   ALUControl=000 | ALUResult=00000005
+# DATA MEMORY:
+#   Addr=00000005
+#   WriteData=xxxxxxxx | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=1 | alu_ctrl=000
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x1 <= 00000005
+# 
+# =================================================
+# Cycle=4 | Time=35 | RESET=0
+# PC=00000004 | PC_next=00000008
+# INSTR=00a00113
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=10 RD2=xxxxxxxx
+#   A3=2 WD3=0000000a
+# ALU:
+#   SrcA=00000000 | SrcB=0000000a
+#   ALUControl=000 | ALUResult=0000000a
+# DATA MEMORY:
+#   Addr=0000000a
+#   WriteData=xxxxxxxx | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=1 | alu_ctrl=000
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x2 <= 0000000a
+# 
+# =================================================
+# Cycle=5 | Time=45 | RESET=0
+# PC=00000008 | PC_next=0000000c
+# INSTR=0030e193
+# REGFILE:
+#   A1=1 RD1=00000005
+#   A2=3 RD2=xxxxxxxx
+#   A3=3 WD3=00000007
+# ALU:
+#   SrcA=00000005 | SrcB=00000003
+#   ALUControl=011 | ALUResult=00000007
+# DATA MEMORY:
+#   Addr=00000007
+#   WriteData=xxxxxxxx | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=1 | alu_ctrl=011
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x3 <= 00000007
+# 
+# =================================================
+# Cycle=6 | Time=55 | RESET=0
+# PC=0000000c | PC_next=00000010
+# INSTR=00617213
+# REGFILE:
+#   A1=2 RD1=0000000a
+#   A2=6 RD2=xxxxxxxx
+#   A3=4 WD3=00000002
+# ALU:
+#   SrcA=0000000a | SrcB=00000006
+#   ALUControl=010 | ALUResult=00000002
+# DATA MEMORY:
+#   Addr=00000002
+#   WriteData=xxxxxxxx | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=1 | alu_ctrl=010
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x4 <= 00000002
+# 
+# =================================================
+# Cycle=7 | Time=65 | RESET=0
+# PC=00000010 | PC_next=00000014
+# INSTR=0060a293
+# REGFILE:
+#   A1=1 RD1=00000005
+#   A2=6 RD2=xxxxxxxx
+#   A3=5 WD3=00000001
+# ALU:
+#   SrcA=00000005 | SrcB=00000006
+#   ALUControl=101 | ALUResult=00000001
+# DATA MEMORY:
+#   Addr=00000001
+#   WriteData=xxxxxxxx | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=1 | alu_ctrl=101
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x5 <= 00000001
+# 
+# =================================================
+# Cycle=8 | Time=75 | RESET=0
+# PC=00000014 | PC_next=00000018
+# INSTR=00208333
+# REGFILE:
+#   A1=1 RD1=00000005
+#   A2=2 RD2=0000000a
+#   A3=6 WD3=0000000f
+# ALU:
+#   SrcA=00000005 | SrcB=0000000a
+#   ALUControl=000 | ALUResult=0000000f
+# DATA MEMORY:
+#   Addr=0000000f
+#   WriteData=0000000a | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=0 | alu_ctrl=000
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x6 <= 0000000f
+# 
+# =================================================
+# Cycle=9 | Time=85 | RESET=0
+# PC=00000018 | PC_next=0000001c
+# INSTR=401103b3
+# REGFILE:
+#   A1=2 RD1=0000000a
+#   A2=1 RD2=00000005
+#   A3=7 WD3=00000005
+# ALU:
+#   SrcA=0000000a | SrcB=00000005
+#   ALUControl=001 | ALUResult=00000005
+# DATA MEMORY:
+#   Addr=00000005
+#   WriteData=00000005 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=0 | alu_ctrl=001
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x7 <= 00000005
+# 
+# =================================================
+# Cycle=10 | Time=95 | RESET=0
+# PC=0000001c | PC_next=00000020
+# INSTR=0020f433
+# REGFILE:
+#   A1=1 RD1=00000005
+#   A2=2 RD2=0000000a
+#   A3=8 WD3=00000000
+# ALU:
+#   SrcA=00000005 | SrcB=0000000a
+#   ALUControl=010 | ALUResult=00000000
+# DATA MEMORY:
+#   Addr=00000000
+#   WriteData=0000000a | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=0 | alu_ctrl=010
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x8 <= 00000000
+# 
+# =================================================
+# Cycle=11 | Time=105 | RESET=0
+# PC=00000020 | PC_next=00000024
+# INSTR=0020e4b3
+# REGFILE:
+#   A1=1 RD1=00000005
+#   A2=2 RD2=0000000a
+#   A3=9 WD3=0000000f
+# ALU:
+#   SrcA=00000005 | SrcB=0000000a
+#   ALUControl=011 | ALUResult=0000000f
+# DATA MEMORY:
+#   Addr=0000000f
+#   WriteData=0000000a | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=0 | alu_ctrl=011
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x9 <= 0000000f
+# 
+# =================================================
+# Cycle=12 | Time=115 | RESET=0
+# PC=00000024 | PC_next=00000028
+# INSTR=00112533
+# REGFILE:
+#   A1=2 RD1=0000000a
+#   A2=1 RD2=00000005
+#   A3=10 WD3=00000000
+# ALU:
+#   SrcA=0000000a | SrcB=00000005
+#   ALUControl=101 | ALUResult=00000000
+# DATA MEMORY:
+#   Addr=00000000
+#   WriteData=00000005 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=0 | alu_ctrl=101
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x10 <= 00000000
+# 
+# =================================================
+# Cycle=13 | Time=125 | RESET=0
+# PC=00000028 | PC_next=0000002c
+# INSTR=06400593
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=4 RD2=00000002
+#   A3=11 WD3=00000064
+# ALU:
+#   SrcA=00000000 | SrcB=00000064
+#   ALUControl=000 | ALUResult=00000064
+# DATA MEMORY:
+#   Addr=00000064
+#   WriteData=00000002 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=1 | alu_ctrl=000
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x11 <= 00000064
+# 
+# =================================================
+# Cycle=14 | Time=135 | RESET=0
+# PC=0000002c | PC_next=00000030
+# INSTR=0065a023
+# REGFILE:
+#   A1=11 RD1=00000064
+#   A2=6 RD2=0000000f
+#   A3=0 WD3=00000064
+# ALU:
+#   SrcA=00000064 | SrcB=00000000
+#   ALUControl=000 | ALUResult=00000064
+# DATA MEMORY:
+#   Addr=00000064
+#   WriteData=0000000f | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=01
+#   alu_src=1 | alu_ctrl=000
+#   reg_write=0 | mem_write=1
+#   pc_src=0
+# >>> MEM WRITE: Addr=00000064 Data=0000000f
+# 
+# =================================================
+# Cycle=15 | Time=145 | RESET=0
+# PC=00000030 | PC_next=00000034
+# INSTR=0075a223
+# REGFILE:
+#   A1=11 RD1=00000064
+#   A2=7 RD2=00000005
+#   A3=4 WD3=00000068
+# ALU:
+#   SrcA=00000064 | SrcB=00000004
+#   ALUControl=000 | ALUResult=00000068
+# DATA MEMORY:
+#   Addr=00000068
+#   WriteData=00000005 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=01
+#   alu_src=1 | alu_ctrl=000
+#   reg_write=0 | mem_write=1
+#   pc_src=0
+# >>> MEM WRITE: Addr=00000068 Data=00000005
+# 
+# =================================================
+# Cycle=16 | Time=155 | RESET=0
+# PC=00000034 | PC_next=00000038
+# INSTR=0005a603
+# REGFILE:
+#   A1=11 RD1=00000064
+#   A2=0 RD2=00000000
+#   A3=12 WD3=0000000f
+# ALU:
+#   SrcA=00000064 | SrcB=00000000
+#   ALUControl=000 | ALUResult=00000064
+# DATA MEMORY:
+#   Addr=00000064
+#   WriteData=00000000 | ReadData=0000000f
+# CONTROL:
+#   result_src=01 | imm_src=00
+#   alu_src=1 | alu_ctrl=000
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x12 <= 0000000f
+# 
+# =================================================
+# Cycle=17 | Time=165 | RESET=0
+# PC=00000038 | PC_next=0000003c
+# INSTR=0045a683
+# REGFILE:
+#   A1=11 RD1=00000064
+#   A2=4 RD2=00000002
+#   A3=13 WD3=00000005
+# ALU:
+#   SrcA=00000064 | SrcB=00000004
+#   ALUControl=000 | ALUResult=00000068
+# DATA MEMORY:
+#   Addr=00000068
+#   WriteData=00000002 | ReadData=00000005
+# CONTROL:
+#   result_src=01 | imm_src=00
+#   alu_src=1 | alu_ctrl=000
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x13 <= 00000005
+# 
+# =================================================
+# Cycle=18 | Time=175 | RESET=0
+# PC=0000003c | PC_next=00000044
+# INSTR=00660463
+# REGFILE:
+#   A1=12 RD1=0000000f
+#   A2=6 RD2=0000000f
+#   A3=8 WD3=00000000
+# ALU:
+#   SrcA=0000000f | SrcB=0000000f
+#   ALUControl=001 | ALUResult=00000000
+# DATA MEMORY:
+#   Addr=00000000
+#   WriteData=0000000f | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=10
+#   alu_src=0 | alu_ctrl=001
+#   reg_write=0 | mem_write=0
+#   pc_src=1
+# 
+# =================================================
+# Cycle=19 | Time=185 | RESET=0
+# PC=00000044 | PC_next=00000048
+# INSTR=00100713
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=1 RD2=00000005
+#   A3=14 WD3=00000001
+# ALU:
+#   SrcA=00000000 | SrcB=00000001
+#   ALUControl=000 | ALUResult=00000001
+# DATA MEMORY:
+#   Addr=00000001
+#   WriteData=00000005 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=1 | alu_ctrl=000
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x14 <= 00000001
+# 
+# =================================================
+# Cycle=20 | Time=195 | RESET=0
+# PC=00000048 | PC_next=00000054
+# INSTR=00c007ef
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=12 RD2=0000000f
+#   A3=15 WD3=0000004c
+# ALU:
+#   SrcA=00000000 | SrcB=0000000f
+#   ALUControl=000 | ALUResult=0000000f
+# DATA MEMORY:
+#   Addr=0000000f
+#   WriteData=0000000f | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=10 | imm_src=11
+#   alu_src=0 | alu_ctrl=000
+#   reg_write=1 | mem_write=0
+#   pc_src=1
+# >>> REG WRITE: x15 <= 0000004c
+# 
+# =================================================
+# Cycle=21 | Time=205 | RESET=0
+# PC=00000054 | PC_next=00000058
+# INSTR=02a00813
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=10 RD2=00000000
+#   A3=16 WD3=0000002a
+# ALU:
+#   SrcA=00000000 | SrcB=0000002a
+#   ALUControl=000 | ALUResult=0000002a
+# DATA MEMORY:
+#   Addr=0000002a
+#   WriteData=00000000 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=00
+#   alu_src=1 | alu_ctrl=000
+#   reg_write=1 | mem_write=0
+#   pc_src=0
+# >>> REG WRITE: x16 <= 0000002a
+# 
+# =================================================
+# Cycle=22 | Time=215 | RESET=0
+# PC=00000058 | PC_next=00000058
+# INSTR=00000063
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=0 RD2=00000000
+#   A3=0 WD3=00000000
+# ALU:
+#   SrcA=00000000 | SrcB=00000000
+#   ALUControl=001 | ALUResult=00000000
+# DATA MEMORY:
+#   Addr=00000000
+#   WriteData=00000000 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=10
+#   alu_src=0 | alu_ctrl=001
+#   reg_write=0 | mem_write=0
+#   pc_src=1
+# 
+# =================================================
+# Cycle=23 | Time=225 | RESET=0
+# PC=00000058 | PC_next=00000058
+# INSTR=00000063
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=0 RD2=00000000
+#   A3=0 WD3=00000000
+# ALU:
+#   SrcA=00000000 | SrcB=00000000
+#   ALUControl=001 | ALUResult=00000000
+# DATA MEMORY:
+#   Addr=00000000
+#   WriteData=00000000 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=10
+#   alu_src=0 | alu_ctrl=001
+#   reg_write=0 | mem_write=0
+#   pc_src=1
+# 
+# =================================================
+# Cycle=24 | Time=235 | RESET=0
+# PC=00000058 | PC_next=00000058
+# INSTR=00000063
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=0 RD2=00000000
+#   A3=0 WD3=00000000
+# ALU:
+#   SrcA=00000000 | SrcB=00000000
+#   ALUControl=001 | ALUResult=00000000
+# DATA MEMORY:
+#   Addr=00000000
+#   WriteData=00000000 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=10
+#   alu_src=0 | alu_ctrl=001
+#   reg_write=0 | mem_write=0
+#   pc_src=1
+# 
+# =================================================
+# Cycle=25 | Time=245 | RESET=0
+# PC=00000058 | PC_next=00000058
+# INSTR=00000063
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=0 RD2=00000000
+#   A3=0 WD3=00000000
+# ALU:
+#   SrcA=00000000 | SrcB=00000000
+#   ALUControl=001 | ALUResult=00000000
+# DATA MEMORY:
+#   Addr=00000000
+#   WriteData=00000000 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=10
+#   alu_src=0 | alu_ctrl=001
+#   reg_write=0 | mem_write=0
+#   pc_src=1
+# 
+# =================================================
+# Cycle=26 | Time=255 | RESET=0
+# PC=00000058 | PC_next=00000058
+# INSTR=00000063
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=0 RD2=00000000
+#   A3=0 WD3=00000000
+# ALU:
+#   SrcA=00000000 | SrcB=00000000
+#   ALUControl=001 | ALUResult=00000000
+# DATA MEMORY:
+#   Addr=00000000
+#   WriteData=00000000 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=10
+#   alu_src=0 | alu_ctrl=001
+#   reg_write=0 | mem_write=0
+#   pc_src=1
+# 
+# =================================================
+# Cycle=27 | Time=265 | RESET=0
+# PC=00000058 | PC_next=00000058
+# INSTR=00000063
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=0 RD2=00000000
+#   A3=0 WD3=00000000
+# ALU:
+#   SrcA=00000000 | SrcB=00000000
+#   ALUControl=001 | ALUResult=00000000
+# DATA MEMORY:
+#   Addr=00000000
+#   WriteData=00000000 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=10
+#   alu_src=0 | alu_ctrl=001
+#   reg_write=0 | mem_write=0
+#   pc_src=1
+# 
+# =================================================
+# Cycle=28 | Time=275 | RESET=0
+# PC=00000058 | PC_next=00000058
+# INSTR=00000063
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=0 RD2=00000000
+#   A3=0 WD3=00000000
+# ALU:
+#   SrcA=00000000 | SrcB=00000000
+#   ALUControl=001 | ALUResult=00000000
+# DATA MEMORY:
+#   Addr=00000000
+#   WriteData=00000000 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=10
+#   alu_src=0 | alu_ctrl=001
+#   reg_write=0 | mem_write=0
+#   pc_src=1
+# 
+# =================================================
+# Cycle=29 | Time=285 | RESET=0
+# PC=00000058 | PC_next=00000058
+# INSTR=00000063
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=0 RD2=00000000
+#   A3=0 WD3=00000000
+# ALU:
+#   SrcA=00000000 | SrcB=00000000
+#   ALUControl=001 | ALUResult=00000000
+# DATA MEMORY:
+#   Addr=00000000
+#   WriteData=00000000 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=10
+#   alu_src=0 | alu_ctrl=001
+#   reg_write=0 | mem_write=0
+#   pc_src=1
+# 
+# =================================================
+# Cycle=30 | Time=295 | RESET=0
+# PC=00000058 | PC_next=00000058
+# INSTR=00000063
+# REGFILE:
+#   A1=0 RD1=00000000
+#   A2=0 RD2=00000000
+#   A3=0 WD3=00000000
+# ALU:
+#   SrcA=00000000 | SrcB=00000000
+#   ALUControl=001 | ALUResult=00000000
+# DATA MEMORY:
+#   Addr=00000000
+#   WriteData=00000000 | ReadData=xxxxxxxx
+# CONTROL:
+#   result_src=00 | imm_src=10
+#   alu_src=0 | alu_ctrl=001
+#   reg_write=0 | mem_write=0
+#   pc_src=1
+# ** Note: $finish    : tb/cpu_tb.sv(162)
+#    Time: 300 ns  Iteration: 0  Instance: /cpu_tb
