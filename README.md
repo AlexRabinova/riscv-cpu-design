@@ -78,6 +78,8 @@ In a single-cycle RISC-V processor, the clock period is constrained by the worst
 
 ### 🛑 Critical Path Analysis (`lw` Instruction)
 
+![Critical_path](pictures/Critical_path.png)
+
 The critical path occurs during the execution of the Load Word (`lw`) instruction because it traverses the maximum number of sequential and combinational logic blocks back-to-back:
 
 1. **Program Counter (PC):** Clock-to-output delay ($T_{pc\_q}$) to present the current instruction address.
