@@ -1,0 +1,14 @@
+# Quartus Build Artifacts & Database
+/db/
+/incremental_db/
+/output_files/
+*.qsl
+*.qws
+
+# ModelSim / QuestaSim Outputs
+/work/
+*.log
+*.vcd
+*.wlf
+transcript
+modelsim.ini
