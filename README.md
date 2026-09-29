@@ -50,12 +50,12 @@ The core was targeted and synthesized for the **Intel/Altera DE1 FPGA Evaluation
 ### Key Synthesis Takeaways & Hardware Optimizations
 
 1. **Top-Level Pin Preservation:**
-   * During early synthesis runs, Quartus pruned large sections of the logic because the internal signals were not tied to external hardware pins.
-   * To prevent the synthesizer from optimizing away core functional units (ALU, registers, PC), key internal signals—such as the ALU Result and Write Data—were mapped to top-level output pins (e.g., green/red LEDs or 7-segment displays).
+   * During early synthesis runs, Quartus pruned large sections of the logic because there wasn't output pins.
+   * To prevent the synthesizer from optimizing away core functional units, outputing the instruction signal was the fix.
 
 2. **Memory Block Optimization (MegaWizard IP):**
    * Synthesizing raw SystemVerilog array structures for instruction and data memory resulted in Quartus instantiating thousands of individual **Logic Elements (LEs)** as flip-flops rather than utilizing the FPGA's dedicated **M4K embedded memory blocks**.
-   * To achieve efficient resource utilization, both Instruction Memory and Data Memory were migrated to **Altera MegaWizard (IP Catalog) RAM/ROM blocks** (`altsyncram`). This dropped LE consumption significantly and properly utilized the onboard hardware memory bits.
+   * To achieve efficient resource utilization, both Instruction Memory and Data Memory were migrated to **Altera MegaWizard (IP Catalog) RAM/ROM blocks** . This dropped LE consumption significantly and properly utilized the onboard hardware memory bits.
 
 ### 📊 Synthesis Resource Utilization Summary
 
