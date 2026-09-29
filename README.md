@@ -1,25 +1,43 @@
-# RV32I Single-Cycle Processor Core (SystemVerilog)
+# RISC-V RV32I Single-Cycle Processor
 
-A synthesizable, single-cycle RISC-V RV32I CPU core written in SystemVerilog. This project features an automated assembly compilation toolchain, automated simulation execution via ModelSim, waveform dumping, and self-checking testbenches.
+A clean, modular implementation of a 32-bit single-cycle RISC-V processor core supporting the base integer instruction set ($\text{RV32I}$), developed in SystemVerilog.
 
----
+> *Note: The core architecture and datapath design have been adapted from **Digital Design and Computer Architecture: RISC-V Edition** by David Harris and Sarah Harris.*
 
-## 🏗 Architecture Overview
+## 🏛️ System Architecture
 
-The core implements the **RV32I Base Integer Instruction Set** with a single-cycle datapath, executing one instruction per clock cycle.
+This core implements a classic single-cycle datapath where every instruction executes within a single clock cycle. It integrates core functional units including an Arithmetic Logic Unit ($\text{ALU}$), a Register File ($32 \times 32$-bit registers), Instruction and Data Memories, an Immediate Extender, and a dedicated Control Unit.
 
-* **Architecture Type:** Single-Cycle RISC-V 32-bit (RV32I)
-* **Supported Instruction Types:** R-type, I-type, S-type, B-type, U-type, J-type
-* **Language:** SystemVerilog (`always_ff`, `always_comb`, strongly typed logic)
-* **Synthesis & Simulation Target:** Altera/Intel Quartus Prime, ModelSim / QuestaSim
+### Processor Block Diagram
+![Block Diagram](diagrams/Block_diagram.png)
 
-### Datapath & Control Architecture
-*(Include a diagram image here by placing a file inside `diagrams/`)*
-![RISC-V Datapath](diagrams/datapath.png)
+### Control Unit Logic
+![Control Unit](diagrams/Control_unit.png)
 
-* **Fetch Unit:** Program counter (PC) logic with branch/jump address calculation.
-* **Decode & Control:** Decodes opcode, funct3, and funct7 fields to generate ALU control signals, register write enables, and memory control logic.
-* **Register File:** 32 x 32-bit general-purpose registers (x0 hardwired to zero).
-* **ALU & Immediate Generator:** Full 32-bit arithmetic/logic unit and immediate sign-extension block.
+## 🚀 Getting Started & Usage Guide
 
----
+Follow these steps to compile software, run simulations, and inspect waveforms for your processor design.
+
+### 1. Compiling Assembly Code (`Makefile`)
+
+The repository includes an automated `Makefile` to handle the software toolchain. It takes your raw assembly source file (`sw/asm/test.s`), compiles it using the GNU RISC-V cross-compiler, and converts it into a hex-formatted memory file (`.dat`) that is loaded into `rtl/single_cycle/memory/instruction_memory.sv`.
+
+* **Source File:** `sw/asm/test.s`
+* **Target Output:** `rtl/single_cycle/memory/test.dat`
+
+To build the software program, simply run:
+```bash
+make
+```
+
+
+### 2. Running Simulations (`run.bat`)
+
+Once the memory file is generated, you can run the hardware simulation testbench located in `tb/cpu_tb`.
+
+Execute the simulation script via Windows Command Prompt or PowerShell:
+```cmd
+run.bat
+```
+
+This batch script compiles the RTL and testbench files, executes the simulation, generates a Value Change Dump (`wave.vcd`) file, and logs cycle-by-cycle hardware execution states to the console, showing what each instruction does on every clock edge.
